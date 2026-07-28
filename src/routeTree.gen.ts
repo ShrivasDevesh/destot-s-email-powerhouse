@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TransactionalEmailRouteImport } from './routes/transactional-email'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as EmailOtpRouteImport } from './routes/email-otp'
+import { Route as CustomMailServerRouteImport } from './routes/custom-mail-server'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TransactionalEmailRoute = TransactionalEmailRouteImport.update({
+  id: '/transactional-email',
+  path: '/transactional-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmailOtpRoute = EmailOtpRouteImport.update({
+  id: '/email-otp',
+  path: '/email-otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomMailServerRoute = CustomMailServerRouteImport.update({
+  id: '/custom-mail-server',
+  path: '/custom-mail-server',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/custom-mail-server': typeof CustomMailServerRoute
+  '/email-otp': typeof EmailOtpRoute
+  '/pricing': typeof PricingRoute
+  '/services': typeof ServicesRoute
+  '/transactional-email': typeof TransactionalEmailRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/custom-mail-server': typeof CustomMailServerRoute
+  '/email-otp': typeof EmailOtpRoute
+  '/pricing': typeof PricingRoute
+  '/services': typeof ServicesRoute
+  '/transactional-email': typeof TransactionalEmailRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/custom-mail-server': typeof CustomMailServerRoute
+  '/email-otp': typeof EmailOtpRoute
+  '/pricing': typeof PricingRoute
+  '/services': typeof ServicesRoute
+  '/transactional-email': typeof TransactionalEmailRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/custom-mail-server'
+    | '/email-otp'
+    | '/pricing'
+    | '/services'
+    | '/transactional-email'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/custom-mail-server'
+    | '/email-otp'
+    | '/pricing'
+    | '/services'
+    | '/transactional-email'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/custom-mail-server'
+    | '/email-otp'
+    | '/pricing'
+    | '/services'
+    | '/transactional-email'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CustomMailServerRoute: typeof CustomMailServerRoute
+  EmailOtpRoute: typeof EmailOtpRoute
+  PricingRoute: typeof PricingRoute
+  ServicesRoute: typeof ServicesRoute
+  TransactionalEmailRoute: typeof TransactionalEmailRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/transactional-email': {
+      id: '/transactional-email'
+      path: '/transactional-email'
+      fullPath: '/transactional-email'
+      preLoaderRoute: typeof TransactionalEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/email-otp': {
+      id: '/email-otp'
+      path: '/email-otp'
+      fullPath: '/email-otp'
+      preLoaderRoute: typeof EmailOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/custom-mail-server': {
+      id: '/custom-mail-server'
+      path: '/custom-mail-server'
+      fullPath: '/custom-mail-server'
+      preLoaderRoute: typeof CustomMailServerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +177,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CustomMailServerRoute: CustomMailServerRoute,
+  EmailOtpRoute: EmailOtpRoute,
+  PricingRoute: PricingRoute,
+  ServicesRoute: ServicesRoute,
+  TransactionalEmailRoute: TransactionalEmailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
